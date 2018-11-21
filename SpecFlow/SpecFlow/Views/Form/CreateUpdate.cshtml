@@ -1,0 +1,40 @@
+﻿@model SpecFlow.Models.FormViewModel
+
+@{
+    ViewBag.Title = "CreateUpdate";
+}
+
+<h2>Create Form</h2>
+
+@using (Html.BeginForm("Update", "Form", FormMethod.Post, new { id = "my-form-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(mod => mod.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(mod => mod.Name)
+        <div class="input-group">
+            @Html.EditorFor(mod => mod.Name)
+        </div>
+        @Html.ValidationMessageFor(mod => mod.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(mod => mod.Description)
+        <div class="input-group">
+            @Html.EditorFor(mod => mod.Description)
+        </div>
+        @Html.ValidationMessageFor(mod => mod.Description)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(mod => mod.EnumSelection)
+        <div class="input-group">
+            @Html.EnumDropDownListFor(mod => mod.EnumSelection, "Select an option")
+        </div>
+        @Html.ValidationMessageFor(mod => mod.EnumSelection)
+    </div>
+
+    <input type="submit" value="Submit" id="submit-form" />
+}
+
